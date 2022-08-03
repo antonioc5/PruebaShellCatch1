@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     getTodos();
-  }, [todos]);
+  }, []);
   
   const url = "https://todolistshellcatch.herokuapp.com";  //url de la api
 
@@ -18,7 +18,7 @@ function App() {
   const getTodos = async ()=>{
     const query = await axios.get(url + '/api/todos');
     //console.log(result.data);
-    setTodos(query.data)
+    setTodos(query.data);
   }
 
   //Agrega un nuevo todo, mandandolo desde todo form a la api
@@ -35,7 +35,8 @@ function App() {
       catch(err){console.log(err);}
     }
 
-    query();
+    query();  //mandamos el todo a la api para que lo guarde en la bd
+    setTodos([...todos, newTodo])  //agregamos ese todo al usestate para mostrarlo
   }
 
   //Elimina un todo pasandole el id a la api desde el todo item
@@ -52,6 +53,7 @@ function App() {
     }
 
     query();
+    getTodos();
   }
 
   return (
