@@ -5,6 +5,8 @@ const userRoutes = require("./routes/todo");
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -13,8 +15,6 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
-
-const port = process.env.PORT || 3000;
 
 //middleware
 app.use(express.json());  //para recibir el req.body correctamente
